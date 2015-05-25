@@ -1,0 +1,5 @@
+package matasano
+
+modules = Seq, Bytes, Hex, Base64
+main = Main
+executable = matasano
