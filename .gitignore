@@ -42,6 +42,9 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
-.idc
-.exe
-.dll
+.#*
+*.ibc
+*.idr~
+*.idr#
+*.exe
+*.dll
