@@ -5,9 +5,9 @@ import Bytes
 
 octetsToSextets: List (Bits 8) -> List (Bits 6)
 octetsToSextets Nil = Nil
-octetsToSextets (b1 :: b2 :: b3 :: bs) = head6 b1 :: append (tail2 b1) (head4 b2) :: append (tail4 b2) (head2 b3) :: tail6 b3 :: octetsToSextets bs
-octetsToSextets (b1 :: b2 :: Nil) = head6 b1 :: append (tail2 b1) (head4 b2) :: zeroShift (tail4 b2) :: Nil
-octetsToSextets (b1 :: Nil) = head6 b1 :: zeroShift (tail2 b1) :: Nil
+octetsToSextets (b1 :: b2 :: b3 :: bs) = take 6 b1 :: append (drop 6 b1) (take 4 b2) :: append (drop 4 b2) (take 2 b3) :: drop 2 b3 :: octetsToSextets bs
+octetsToSextets (b1 :: b2 :: Nil) = take 6 b1 :: append (drop 6 b1) (take 4 b2) :: zeroShift (drop 4 b2) :: Nil
+octetsToSextets (b1 :: Nil) = take 6 b1 :: zeroShift (drop 6 b1) :: Nil
 
 base64lookup : List Char
 base64lookup = unpack "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"
