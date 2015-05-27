@@ -2,6 +2,7 @@ module Main
 
 import Hex
 import Base64
+import Seq
 import Data.Bits
 
 -- task 1.1
@@ -9,7 +10,14 @@ hexToBase64 : String -> Maybe String
 hexToBase64 input = do bytes <- hexStringToBytes input
                        encoded <- encodeBytes bytes
                        return encoded
-                                 
-main : IO () 
-main = putStrLn $ show $ hexToBase64 "49276d206b696c6c696e6720796f757220627261696e206c696b65206120706f69736f6e6f7573206d757368726f6f6d" 
+
+-- task 1.2
+xorTwo : String -> String -> Maybe String
+xorTwo x y = do xb <- hexStringToBytes x
+                yb <- hexStringToBytes y
+                str <- bytesToHexString (zipWithI xb yb xor)
+                return str 
+
+main : IO ()
+main = putStrLn $ show $ xorTwo "1c0111001f010100061a024b53535009181c" "686974207468652062756c6c277320657965"
 
